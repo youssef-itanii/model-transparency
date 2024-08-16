@@ -74,7 +74,16 @@ class IntotoPayload(signing.SigningPayload):
         for subcls in subclasses:
             if predicate_type == subcls.predicate_type:
                 return subcls.manifest_from_payload(payload)
-
+        for subcls in subclasses:
+            if predicate_type == subcls.predicate_type:
+                return subcls.manifest_from_payload(payload)
+        
+        for subcls in subclasses:
+            if predicate_type == subcls.predicate_type:
+                return subcls.manifest_from_payload(payload)
+        for subcls in subclasses:
+            if predicate_type == subcls.predicate_type:
+                return subcls.manifest_from_payload(payload)
         raise ValueError("Unknown in-toto predicate type {predicate_type}")
 
 
