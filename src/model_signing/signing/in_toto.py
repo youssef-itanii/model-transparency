@@ -30,7 +30,8 @@ from model_signing.hashing import memory
 from model_signing.manifest import manifest as manifest_module
 from model_signing.signing import signing
 
-
+def test():
+    print("T")
 class IntotoPayload(signing.SigningPayload):
     """A generic payload in in-toto format.
 
