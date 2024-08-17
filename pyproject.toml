@@ -44,7 +44,7 @@ keywords = [
 [project.urls]
 Homepage = "https://pypi.org/project/model-signing/"
 Changelog = "https://github.com/sigstore/model-transparency/blob/main/CHANGELOG.md"
-Documentation = "https://sigstore.github.io/model-transparency/model_signing.html"
+# TODO: https://github.com/sigstore/model-transparency/pull/279 - Documentation = "...."
 Source = "https://github.com/sigstore/model-transparency"
 Issues = "https://github.com/sigstore/model-transparency/issues"
 PyPI = "https://pypi.org/project/model-signing/"
@@ -63,6 +63,18 @@ randomize = true
 [[tool.hatch.envs.hatch-test.matrix]]
 python = ["3.11", "3.12"]
 
+[tool.hatch.envs.docs]
+description = """Custom environment for pdoc.
+Use `hatch run docs:serve` to view documentation.
+"""
+extra-dependencies = [
+  "pdoc"
+]
+
+[tool.hatch.envs.docs.scripts]
+serve = "pdoc src/model_signing --docformat google --no-show-source"
+build = "serve --output-directory html"
+
 [tool.hatch.envs.type]
 description = """Custom environment for pytype.
 Use `hatch run type:check` to check types.
@@ -77,17 +89,15 @@ python = "3.11"
 [tool.hatch.envs.type.scripts]
 check = "pytype -k -j auto src tests"
 
-[tool.hatch.envs.docs]
-description = """Custom environment for pdoc.
-Use `hatch run docs:serve` to view documentation.
-"""
-extra-dependencies = [
-  "pdoc"
+[tool.coverage.report]
+exclude_also = [
+  "pass",
+  "return NotImplemented",
 ]
-
-[tool.hatch.envs.docs.scripts]
-serve = "pdoc src/model_signing --docformat google --no-show-source"
-build = "serve --output-directory html"
+omit = ["tests/*"]
+show_missing = true
+skip_covered = true
+skip_empty = true
 
 # Add support for testing via the old `pytest .` way, too.
 [tool.pytest.ini_options]
