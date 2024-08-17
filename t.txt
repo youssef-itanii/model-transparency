@@ -1,0 +1,30 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.9, pytest-8.3.2, pluggy-1.5.0
+Using --randomly-seed=611507865
+rootdir: /home/youssef/Desktop/personal/model-transparency
+configfile: pyproject.toml
+plugins: xdist-3.6.1, rerunfailures-14.0, mock-3.14.0, randomly-3.15.0
+created: 8/8 workers
+8 workers [233 items]
+
+........................................................................ [ 30%]
+........................................................................ [ 61%]
+........................................................................ [ 92%]
+.................                                                        [100%]
+============================= 233 passed in 2.05s ==============================
+Combined data file .coverage.youssef.132001.XnNNnulx
+Combined data file .coverage.youssef.132003.XZuDSlYx
+Combined data file .coverage.youssef.132006.XsixsvKx
+Combined data file .coverage.youssef.132009.XVppewrx
+Combined data file .coverage.youssef.132012.XbZvPWhx
+Combined data file .coverage.youssef.132017.XiqUquNx
+Combined data file .coverage.youssef.132028.XZUfEijx
+Combined data file .coverage.youssef.132044.XfpBwggx
+Combined data file .coverage.youssef.132047.XSAjqeax
+Name                                   Stmts   Miss  Cover   Missing
+--------------------------------------------------------------------
+src/model_signing/signing/in_toto.py     168     68    60%   65-78, 181-190, 342-367, 485-512, 660-671, 793-806
+--------------------------------------------------------------------
+TOTAL                                    743     68    91%
+
+20 files skipped due to complete coverage.
