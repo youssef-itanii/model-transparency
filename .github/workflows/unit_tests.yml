@@ -39,6 +39,7 @@ jobs:
     - name: Run unit tests (with coverage report at the end)
       run:  |
         if [[ "${{ matrix.os }}" == "ubuntu-latest" && "${{ matrix.python-version }}" == "3.11" ]]; then
+
           hatch test -c -py ${{ matrix.python-version }} > cov.txt
         else
           hatch test -c -py ${{ matrix.python-version }}
@@ -46,27 +47,12 @@ jobs:
     - name: Comment Missed Lines
       if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
       run: |
-
-    
-          
-            
-    
-
-          
-          Expand Down
-          
-            
-    
-
-          
-          Expand Up
-    
-    @@ -78,12 +77,6 @@ jobs:
-  
         awk '/Name/{flag=1; next} /TOTAL/{flag=0; next} flag && !/^[-]+$/' cov.txt | while IFS= read -r line; do
             # Extract file name and missing ranges
             file_name=$(echo "$line" | awk '{print $1}')
             missing_lines=$(echo "$line" | awk '{for (i=5; i<=NF; i++) printf $i " "; print ""}')
+
+
             # Process each range
             for range in $missing_lines; do
                 # Trim leading and trailing whitespace
@@ -74,6 +60,7 @@ jobs:
                 line_start=""
                 line_end=""
                 message=""
+
                 if [[ "$range" == *"-"* ]]; then
                     # Split range into start and end
                     line_start=$(echo "$range" | cut -d'-' -f1)
@@ -85,6 +72,8 @@ jobs:
                     line_end=$range
                     message="The following line was not covered in your tests: $line_start"
                 fi
+
                 echo "::warning file=$file_name,line=$line_start,col=$line_start,endColumn=$line_end::$message"
               done
           done
+
