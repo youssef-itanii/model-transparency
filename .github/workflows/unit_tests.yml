@@ -51,6 +51,7 @@ jobs:
     - name: Comment Missed Lines
       if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
       run: |
+        cat cov.txt
         awk '/Name/{flag=1; next} /TOTAL/{flag=0; next} flag && !/^[-]+$/' cov.txt | while IFS= read -r line; do
 
             # Extract file name and missing ranges
